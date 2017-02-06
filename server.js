@@ -8,24 +8,59 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
-var articleOne = {
-    
-    title:'Article-One | Arjun',
-    heading:'Article one',
-    date:'Feb 5 2017',
-    content:`
-                <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
-                </p>
-                
-                <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
-                </p>
-                
-                <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
-                </p>
-                
-                <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
-                </p>`
+var articles = {
+     'article-one': {
+        
+        title: 'Article-One | Arjun',
+        heading: 'Article one',
+        date: 'Feb 5 2017',
+        content:`
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>`
+    },
+     'article-two': {
+         title:'Article-Two | Arjun',
+        heading:'Article two',
+        date:'Feb 5 2017',
+        content:`
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>`
+    },
+     'article-three': {
+         title:'Article-Three | Arjun',
+        heading:'Article three',
+        date:'Feb 5 2017',
+        content:`
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>
+                    
+                    <p> This is some content This is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some contentThis is some content
+                    </p>`
+    },
 };
 
 function createTemplate(data) {
@@ -65,17 +100,13 @@ function createTemplate(data) {
 
 
 
-app.get('/article-one',function(req,res) {
-    res.send(createTemplate(articleOne)));
+app.get('/:articleName',function(req,res) {
+    //aricleName == article-one // functionality of express // :____ will become a variable
+    //articles[articleName]=={} content object for article one
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/article-two',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
