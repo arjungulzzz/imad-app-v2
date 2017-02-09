@@ -44,8 +44,7 @@ button.onclick = function() {
 
 
 
-var nameInput = document.getElementById('name');
-var name = nameInput.value;
+
 var submit = document.getElementById('submit_btn');
 submit.onclick = function(){
     var request = new XMLHttpRequest(); // Create a request object
@@ -70,6 +69,8 @@ submit.onclick = function(){
     };
    
     //make the request
+    var nameInput = document.getElementById('name');
+    var name = nameInput.value;
     request.open('GET', 'http://arjungulzzz.imad.hasura-app.io/submit-button?name='+ name, true);
     request.send(null);
     
